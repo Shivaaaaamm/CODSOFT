@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Calculator</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background-color: #f0f0f0;
+    }
+
+    .calculator {
+      width: 250px;
+      background-color: #4285f4;
+      border-radius: 10px;
+      padding: 10px;
+      box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .display {
+      background-color: #fff;
+      color: #333;
+      padding: 10px;
+      text-align: right;
+      font-size: 20px;
+      border-radius: 5px;
+      margin-bottom: 10px;
+    }
+
+    .buttons {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      grid-gap: 10px;
+    }
+
+    button {
+      background-color: #fff;
+      color: #333;
+      border: none;
+      padding: 10px;
+      font-size: 18px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #e9e9e9;
+    }
+  </style>
+</head>
+<body>
+  <div class="calculator">
+    <div class="display">0</div>
+    <div class="buttons">
+      <button>7</button>
+      <button>8</button>
+      <button>9</button>
+      <button>+</button>
+      <button>4</button>
+      <button>5</button>
+      <button>6</button>
+      <button>-</button>
+      <button>1</button>
+      <button>2</button>
+      <button>3</button>
+      <button>=</button>
+      <button>C</button>
+      <button>0</button>
+      <button>.</button>
+      <button>/</button>
+    </div>
+  </div>
+
+  <script>
+    const display = document.querySelector('.display');
+    const buttons = document.querySelectorAll('button');
+
+    let currentInput = '';
+
+    buttons.forEach(button => {
+      button.addEventListener('click', () => {
+        if (button.textContent === '=') {
+          try {
+            currentInput = eval(currentInput).toString();
+          } catch (error) {
+            currentInput = 'Error';
+          }
+        } else if (button.textContent === 'C') {
+          currentInput = '';
+        } else {
+          currentInput += button.textContent;
+        }
+        display.textContent = currentInput;
+      });
+    });
+  </script>
+</body>
+</html>
